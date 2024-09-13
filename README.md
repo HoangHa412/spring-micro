@@ -1,4 +1,4 @@
-#Port
+# Port
 - api gateway: 8765
 - config server:8888
 - eureka naming server: 8761
