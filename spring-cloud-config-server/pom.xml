@@ -8,7 +8,7 @@
         <version>3.3.3</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>org.example</groupId>
+    <groupId>com.example</groupId>
     <artifactId>spring-cloud-config-server</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>spring-cloud-config-server</name>

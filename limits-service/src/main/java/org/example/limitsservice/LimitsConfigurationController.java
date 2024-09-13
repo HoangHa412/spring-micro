@@ -1,9 +1,7 @@
-package org.example.limitsservice.controller;
+package org.example.limitsservice;
 
-import org.example.limitsservice.Configuration;
 import org.example.limitsservice.bean.LimitConfiguration;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 

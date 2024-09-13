@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/currency-exchange-service/currency-exchange-service.iml" filepath="$PROJECT_DIR$/currency-exchange-service/currency-exchange-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/springboot-micro.iml" filepath="$PROJECT_DIR$/.idea/springboot-micro.iml" />
     </modules>
   </component>
