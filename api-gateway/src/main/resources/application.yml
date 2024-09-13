@@ -1,0 +1,24 @@
+spring:
+  cloud:
+    gateway:
+#      globalcors:
+#        cors-configurations:
+#          '/**':
+#            allowedOrigins: '*'
+#            allowedMethods: [GET, POST, PUT, DELETE, OPTIONS]
+#            allowedHeaders: [Content-Type, Authorization, X-Custom-Header]
+#            exposedHeaders: [X-Custom-Header, X-Response-Time]
+      routes:
+        - id: currency-exchange-service
+          uri: lb://localhost:8000
+          predicates:
+            - Path=/currency-exchange-service/**
+          filters:
+            - RewritePath=/currency-exchange-service/(?<segment>.*), /${segment}
+
+        - id: currency-conversion-service
+          uri: http://localhost:8100
+          predicates:
+            - Path=/currency-conversion-service/**
+          filters:
+            - RewritePath=/currency-conversion-service/(?<segment>.*), /${segment}
