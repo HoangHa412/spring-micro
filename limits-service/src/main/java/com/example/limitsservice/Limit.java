@@ -1,4 +1,4 @@
-package org.example.limitsservice.bean;
+package com.example.limitsservice;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class LimitConfiguration {
-    private int maximum;
+public class Limit {
     private int minimum;
+    private int maximum;
 }

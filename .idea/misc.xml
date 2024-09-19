@@ -11,11 +11,13 @@
         <option value="$PROJECT_DIR$/netflix-eureka/pom.xml" />
         <option value="$PROJECT_DIR$/netflix-zuul-api-server/pom.xml" />
         <option value="$PROJECT_DIR$/api-gateway/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-cloud-config-client/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
       <set>
         <option value="$PROJECT_DIR$/netflix-zuul-api-server/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-cloud-config-client/pom.xml" />
       </set>
     </option>
   </component>

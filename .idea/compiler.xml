@@ -17,6 +17,7 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="netflix-zuul-api-gateway-server" target="21" />
+      <module name="spring-cloud-config-client" target="21" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
@@ -27,6 +28,7 @@
       <module name="limits-service" options="-parameters" />
       <module name="netflix-eureka-naming-server" options="-parameters" />
       <module name="netflix-zuul-api-gateway-server" options="-parameters" />
+      <module name="spring-cloud-config-client" options="-parameters" />
       <module name="spring-cloud-config-server" options="-parameters" />
     </option>
   </component>
