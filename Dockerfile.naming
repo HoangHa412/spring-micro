@@ -1,0 +1,8 @@
+FROM openjdk:21-jdk
+
+COPY netflix-eureka/target/netflix-eureka-naming-server-0.0.1-SNAPSHOT.jar /app/netflix-eureka-naming-server-0.0.1-SNAPSHOT.jar
+COPY netflix-eureka/src/main/resources/application.properties /app/application.properties
+
+EXPOSE 8761
+
+ENTRYPOINT ["java", "-jar", "/app/netflix-eureka-naming-server-0.0.1-SNAPSHOT.jar"]

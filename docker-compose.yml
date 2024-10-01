@@ -1,0 +1,119 @@
+version: '3.8'
+
+services:
+  currency-exchange:
+    container_name: exchange-service
+    image: currency-exchange:1.0.0
+    ports:
+      - "8000:8000"
+    depends_on:
+      - netflix-eureka
+      - zipkin
+#      - mysql
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://192.168.1.157:3306/exchange-service
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: sonhabn123
+      SPRING_DATASOURCE_DRIVER_CLASS_NAME: com.mysql.cj.jdbc.Driver
+      eureka.client.serviceUrl.defaultZone: http://netflix-eureka:8761/eureka/
+    networks:
+      - app-network
+
+  currency-conversion:
+    container_name: conversion-service
+    image: currency-conversion:1.0.0
+    depends_on:
+      - netflix-eureka
+      - zipkin
+    ports:
+      - "8100:8100"
+    environment:
+      SPRING_PROFILES_ACTIVE: default
+      eureka.client.serviceUrl.defaultZone: http://netflix-eureka:8761/eureka/
+    networks:
+      - app-network
+
+  api-gateway:
+    container_name: api-gateway
+    image: api-gateway:1.0.0
+    depends_on:
+      - netflix-eureka
+      - zipkin
+    ports:
+      - "8765:8765"
+    environment:
+      SPRING_PROFILES_ACTIVE: default
+      eureka.client.serviceUrl.defaultZone: http://netflix-eureka:8761/eureka/
+    networks:
+      - app-network
+
+  config-server:
+    container_name: config-server
+    image: config-server:1.0.0
+    ports:
+      - "8888:8888"
+    environment:
+      SPRING_PROFILES_ACTIVE: native
+    restart: always
+    networks:
+      - app-network
+
+  limits-service:
+    container_name: limits-service
+    build:
+      context: .
+      dockerfile: Dockerfile.limits
+    image: limits-services:1.0.0
+    ports:
+      - "8080:8080"
+    depends_on:
+      - config-server
+    environment:
+      SPRING_PROFILES_ACTIVE: dev
+      SPRING_CLOUD_CONFIG_URI: http://config-server:8888
+    networks:
+      - app-network
+
+  netflix-eureka:
+    container_name: naming-server
+    image: netflix-eureka:1.0.0
+    depends_on:
+      - zipkin
+    ports:
+      - "8761:8761"
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+    networks:
+      - app-network
+
+#  mysql:
+#    image: mysql:8.0
+#    restart: always
+#    command: mysqld --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+#    environment:
+#      MYSQL_ROOT_PASSWORD: sonhabn123
+#      MYSQL_DATABASE: exchange-service
+#    ports:
+#      - "3307:3306"
+#    volumes:
+#      - './docker/db/data:/var/lib/mysql'
+#      - './exchange-service.sql:/docker-entrypoint-initdb/init.sql'
+#    networks:
+#      - app-network
+#    healthcheck:
+#      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+#      interval: 10s
+#      timeout: 5s
+#      retries: 5
+
+  zipkin:
+    container_name: zipkin
+    image: openzipkin/zipkin:latest
+    ports:
+      - "9411:9411"
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
