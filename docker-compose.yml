@@ -11,7 +11,7 @@ services:
       - zipkin
 #      - mysql
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://192.168.1.157:3306/exchange-service
+      SPRING_DATASOURCE_URL: jdbc:mysql://192.168.1.153:3306/exchange-service
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: sonhabn123
       SPRING_DATASOURCE_DRIVER_CLASS_NAME: com.mysql.cj.jdbc.Driver
@@ -44,6 +44,7 @@ services:
     environment:
       SPRING_PROFILES_ACTIVE: default
       eureka.client.serviceUrl.defaultZone: http://netflix-eureka:8761/eureka/
+
     networks:
       - app-network
 
