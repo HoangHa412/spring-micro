@@ -3,6 +3,6 @@ FROM openjdk:21-jdk
 COPY currency-exchange-service/target/currency-exchange-service-0.0.1-SNAPSHOT.jar /app/currency-exchange-service-0.0.1-SNAPSHOT.jar
 COPY currency-exchange-service/src/main/resources/application.properties /app/application.properties
 
-EXPOSE 8000
+backend-0.0.1-SNAPSHOT.jar
 
 ENTRYPOINT ["java", "-jar", "/app/currency-exchange-service-0.0.1-SNAPSHOT.jar"]
